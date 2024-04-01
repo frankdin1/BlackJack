@@ -16,3 +16,8 @@ if play_game == 'y':
     computer_cards.append(random.choice(cards))
     computer_cards.append(random.choice(cards))
     print(computer_cards)
+
+    pick_another_card = input("Type 'y' to pick another card or 'n' to pass: ")
+    if pick_another_card == 'y':
+        player_cards.append(random.choice(cards))
+        print(player_cards)
