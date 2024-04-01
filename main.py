@@ -31,3 +31,10 @@ while (player_score < 21):
     elif pick_another_card == 'n':
         print(f"\tYour final hand: {player_cards}, final score: {player_score}")
         print(f"\tComputer's final hand: {computer_cards}, final score: {computer_score}")
+        if player_score < 21 and computer_score > player_score:
+            print("You lose")
+        elif player_score < 21 and player_score > computer_score:
+            print("You win")
+        elif player_score < 21 and computer_score == player_score:
+            print("It's a draw.")
+        break
