@@ -21,9 +21,10 @@ if play_game == 'y':
     computer_score = computer_cards[0] + computer_cards[1]
     print(f"Computer's first card: {computer_cards[0]}")
 
+while(player_score < 21):
     pick_another_card = input("Type 'y' to pick another card or 'n' to pass: ")
     if pick_another_card == 'y':
         player_cards.append(random.choice(cards))
-        player_score += player_cards[2]
+        player_score += player_cards[-1]
         print(f"{player_cards}, current score: {player_score}")
         print(f"Computer's first card: {computer_cards[0]}")
