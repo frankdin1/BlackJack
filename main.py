@@ -17,7 +17,12 @@ def subsequent_deal(p_score, d_score):
         pick_another_card = input("Type 'y' to pick another card or 'n' to pass: ")
         if pick_another_card == 'y':
             player_cards.append(random.choice(cards))
+
+            if player_cards[-1] == 11:
+                if p_score + player_cards[-1] > 21:
+                    player_cards[-1] = 1
             p_score += player_cards[-1]
+
             print(f"\tYour cards: {player_cards}, current score: {p_score}")
             print(f"\tComputer's first card: {dealer_cards[0]}")
         elif pick_another_card == 'n':
@@ -46,7 +51,6 @@ def play():
                 if player_score < dealer_score < 21: # dealer_score > player_score and dealer_score < 21
                     print("You lose")
                 elif (player_score > dealer_score) or dealer_score > 21:
-                    print(f"player_score: {player_score}")
                     print("You win")
                 elif player_score == dealer_score:
                     print("It's a draw.")
@@ -56,7 +60,11 @@ def play():
                 print(f"\tYour final hand: {player_cards}, final score: {player_score}")
                 print(f"\tComputer's final hand: {dealer_cards}, final score: {dealer_score}")
                 print("You went over. You lose.")
-
+        player_cards.clear()
+        dealer_cards.clear()
+        play()
+    elif play_game == 'n':
+        return
 
 # function to deal cards at beginning of the game
 def initial_deal():
@@ -74,5 +82,7 @@ def initial_deal():
 
     return p_score, d_score
 
+
+# Add function to change 11 to 1 if 11 will take player over 21
 
 play()
