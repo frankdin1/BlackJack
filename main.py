@@ -21,6 +21,13 @@ if play_game == 'y':
     computer_score = computer_cards[0] + computer_cards[1]
     print(f"\tComputer's first card: {computer_cards[0]}")
 
+if player_score == 21 and computer_score != 21:
+    print("You won a BlackJack.")
+elif player_score == 21 and computer_score == 21:
+    print("You and the Computer both scored BlackJack.")
+elif player_score < 21 and computer_score == 21:
+    print("You lost.")
+
 while (player_score < 21):
     pick_another_card = input("Type 'y' to pick another card or 'n' to pass: ")
     if pick_another_card == 'y':
@@ -38,3 +45,7 @@ while (player_score < 21):
         elif player_score < 21 and computer_score == player_score:
             print("It's a draw.")
         break
+if player_score > 21:
+    print(f"\tYour final hand: {player_cards}, final score: {player_score}")
+    print(f"\tComputer's final hand: {computer_cards}, final score: {computer_score}")
+    print("You went over. You lose.")
