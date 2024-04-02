@@ -64,7 +64,7 @@ def play():
         return
 
 
-# function to deal cards at beginning of the game
+# Function to change 11 to 1 if 11 will take player over 21
 def eleven_to_one():
     total = 0
     for i in range(len(player_cards)):
@@ -72,10 +72,14 @@ def eleven_to_one():
     if total > 21:
         player_cards[-1] = 1
 
+
+# function to deal cards at beginning of the game
 def initial_deal():
     # pick two random cards from the deck for the user and display them
     player_cards.append(random.choice(cards))
     player_cards.append(random.choice(cards))
+    if player_cards[0] == player_cards[1] and player_cards[0] == 11:
+        player_cards[1] = 1
     p_score = player_cards[0] + player_cards[1]
 
     print(f"\tYour cards: {player_cards}, current score: {p_score}")
@@ -88,7 +92,5 @@ def initial_deal():
 
     return p_score, d_score
 
-
-# Add function to change 11 to 1 if 11 will take player over 21
 
 play()
