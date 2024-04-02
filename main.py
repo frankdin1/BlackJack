@@ -17,12 +17,9 @@ def subsequent_deal(p_score, d_score):
         pick_another_card = input("Type 'y' to pick another card or 'n' to pass: ")
         if pick_another_card == 'y':
             player_cards.append(random.choice(cards))
-
             if player_cards[-1] == 11:
-                if p_score + player_cards[-1] > 21:
-                    player_cards[-1] = 1
+                eleven_to_one()
             p_score += player_cards[-1]
-
             print(f"\tYour cards: {player_cards}, current score: {p_score}")
             print(f"\tComputer's first card: {dealer_cards[0]}")
         elif pick_another_card == 'n':
@@ -48,7 +45,7 @@ def play():
             player_score = scores[0]
             dealer_score = scores[1]
             if player_score < 21:
-                if player_score < dealer_score < 21: # dealer_score > player_score and dealer_score < 21
+                if player_score < dealer_score < 21:  # dealer_score > player_score and dealer_score < 21
                     print("You lose")
                 elif (player_score > dealer_score) or dealer_score > 21:
                     print("You win")
@@ -66,12 +63,21 @@ def play():
     elif play_game == 'n':
         return
 
+
 # function to deal cards at beginning of the game
+def eleven_to_one():
+    total = 0
+    for i in range(len(player_cards)):
+        total += player_cards[i]
+    if total > 21:
+        player_cards[-1] = 1
+
 def initial_deal():
     # pick two random cards from the deck for the user and display them
     player_cards.append(random.choice(cards))
     player_cards.append(random.choice(cards))
     p_score = player_cards[0] + player_cards[1]
+
     print(f"\tYour cards: {player_cards}, current score: {p_score}")
 
     # pick two random cards from the deck for the computer, but only reveal the computer's first card.
